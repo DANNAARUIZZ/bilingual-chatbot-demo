@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Service Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="chat-wrapper">
+      <!-- Header -->
+      <header class="chat-header">
+        <div class="header-left">
+          <div class="avatar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="header-title">Customer Support</h1>
+            <span class="header-subtitle">AI Assistant · EN / ES</span>
+          </div>
+        </div>
+        <button class="reset-btn" id="resetBtn" title="Reset conversation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+          </svg>
+          <span>Reset</span>
+        </button>
+      </header>
+
+      <!-- Messages -->
+      <main class="chat-messages" id="chatMessages">
+        <div class="message bot-message" id="welcomeMsg">
+          <div class="message-bubble">
+            <p>Hello! I'm your customer service assistant. How can I help you today?</p>
+            <p class="secondary-text">¡Hola! Soy tu asistente de servicio al cliente. ¿En qué puedo ayudarte hoy?</p>
+          </div>
+          <span class="message-time" id="welcomeTime"></span>
+        </div>
+      </main>
+
+      <!-- Input -->
+      <footer class="chat-input-area">
+        <div class="input-row">
+          <textarea
+            id="userInput"
+            class="chat-input"
+            placeholder="Type your message... / Escribe tu mensaje..."
+            rows="1"
+            maxlength="1000"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <p class="input-hint">Powered by Claude AI · Bilingual EN/ES</p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
