@@ -16,9 +16,17 @@ HORARIO:
 - Horarios pueden variar en días festivos
 
 SUCURSALES EN HERMOSILLO:
-- Sucursal Olivares: Olivares 46-B, Colonia Los Arcos, Hermosillo, Sonora 83250. Tel: 662 216 0759
-- Sucursal Gómez Farías: Sobre Blvd. Gómez Farías, Hermosillo, Sonora. (Consultar teléfono en redes sociales)
-- Para ubicaciones exactas y más sucursales, visitar nuestro Instagram @suqieereposteria o enviar mensaje por WhatsApp.
+- Sucursal Olivares: C. Olivares 46-B, Los Arcos. Tel: +52 662 216 0759
+- Sucursal Colosio: Blvd. Colosio y San Bernardino 715. Tel: +52 662 688 8075
+- Sucursal Gómez Farías: Blvd. Valentín Gómez Farías 24-D. Tel: +52 662 301 5071
+- Sucursal Plaza Dila: Blvd. José María Morelos #349. Tel: +52 662 310 2302
+- Sucursal Quiroga: Blvd. Quiroga #152, Plaza Magnum. Tel: +52 662 503 5995
+- Sucursal La Verbena: Bv. Paseo de las Quintas 410-II. Tel: +52 662 110 3033
+- Sucursal Lomas Perisur: Blvd. de Los Ganaderos #1249. Tel: +52 662 108 6844
+- Sucursal Pabellón Misiones: Blvd. Ignacio Salazar #704-14. Tel: +52 662 310 0705
+- Sucursal Plaza Progreso: Blvd. Progreso 181-Local O. Tel: +52 662 688 4525
+- Sucursal Solidaridad: Blvd. Solidaridad 774-Local K. Tel: +52 662 109 5982
+- Para ubicaciones exactas, visitar nuestro Instagram @suqieereposteria o llamar a la sucursal más cercana.
 
 PRODUCTOS Y ESPECIALIDADES:
 - Pasteles para toda ocasión (cumpleaños, bodas, XV años, bautizos, graduaciones)
