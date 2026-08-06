@@ -1,8 +1,17 @@
 {
-  "name": "chatbot-demo",
+  "name": "chatbot-suqiee",
   "version": "1.0.0",
-  "description": "Bilingual customer service chatbot demo (EN/ES)",
+  "description": "Asistente virtual de Suqiée Repostería - Hermosillo, Sonora",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0"
+    "@anthropic-ai/sdk": "^0.39.0",
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

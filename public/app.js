@@ -74,7 +74,7 @@ async function handleSend() {
   } catch (err) {
     typingEl.remove();
     appendMessage(
-      "Sorry, something went wrong. Please try again. / Lo sentimos, algo salió mal. Por favor intenta de nuevo.",
+      "Lo sentimos, algo salió mal. Por favor intenta de nuevo en unos momentos. 🙏",
       "bot",
       true
     );

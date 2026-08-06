@@ -2,18 +2,18 @@
    CSS Variables & Reset
    ============================================================ */
 :root {
-  --accent: #50C6D8;
-  --accent-dark: #38afc2;
-  --accent-light: #e8f9fb;
-  --bg: #f4f6f8;
+  --accent: #D4577A;
+  --accent-dark: #b8445f;
+  --accent-light: #fdf2f5;
+  --bg: #fef9f7;
   --surface: #ffffff;
-  --border: #e2e8f0;
-  --text-primary: #1a202c;
-  --text-secondary: #718096;
+  --border: #f0e4e0;
+  --text-primary: #2d1f1f;
+  --text-secondary: #8b6f6f;
   --bot-bubble: #ffffff;
-  --user-bubble: #50C6D8;
+  --user-bubble: #D4577A;
   --user-text: #ffffff;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 24px rgba(180, 68, 95, 0.10);
   --radius: 16px;
   --radius-sm: 8px;
 }
@@ -74,12 +74,12 @@ body {
 .avatar {
   width: 42px;
   height: 42px;
-  background: var(--accent);
+  background: var(--accent-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  font-size: 22px;
   flex-shrink: 0;
 }
 
