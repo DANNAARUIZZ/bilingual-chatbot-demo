@@ -175,3 +175,33 @@ function scrollToBottom() {
 function formatTime(date) {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
+
+// ============================================================
+// Viewport fix for mobile keyboards (prevents zoom/scroll issues)
+// ============================================================
+
+function updateViewportHeight() {
+  const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  document.documentElement.style.setProperty("--vh", vh + "px");
+  // Ensure scroll stays at bottom when keyboard opens
+  requestAnimationFrame(() => scrollToBottom());
+}
+
+updateViewportHeight();
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", updateViewportHeight);
+  window.visualViewport.addEventListener("scroll", () => {
+    // Prevent iOS from scrolling the page itself
+    window.scrollTo(0, 0);
+  });
+} else {
+  window.addEventListener("resize", updateViewportHeight);
+}
+
+// Prevent any page-level scrolling on iOS
+document.addEventListener("touchmove", (e) => {
+  if (!chatMessages.contains(e.target)) {
+    e.preventDefault();
+  }
+}, { passive: false });
