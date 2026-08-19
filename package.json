@@ -1,7 +1,7 @@
 {
-  "name": "chatbot-suqiee",
+  "name": "chatbot-dulce-reposteria",
   "version": "1.0.0",
-  "description": "Asistente virtual de Suqiée Repostería - Hermosillo, Sonora",
+  "description": "Asistente virtual de Dulce Repostería - Hermosillo, Sonora",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

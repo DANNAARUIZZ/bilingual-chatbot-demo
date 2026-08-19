@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // System prompt for the AI assistant
-const SYSTEM_PROMPT = `Eres el asistente virtual de Suqiée Repostería (también conocida como "Los Pasteles de Luzma").
+const SYSTEM_PROMPT = `Eres el asistente virtual de Dulce Repostería (también conocida como "Los Pasteles de Luzma").
 
 REGLAS DE IDIOMA:
 - Detecta el idioma del último mensaje del usuario.
@@ -21,7 +21,7 @@ REGLAS DE IDIOMA:
 - Nunca mezcles idiomas en una misma respuesta.
 
 TONO Y ESTILO:
-- Cálido, cercano y amigable, como si fueras parte del equipo de Suqiée.
+- Cálido, cercano y amigable, como si fueras parte del equipo de Dulce Repostería.
 - Usa emojis ocasionalmente para dar calidez (🎂🧁💕).
 - Sé conciso pero informativo.
 - Si no sabes algo específico, ofrece contactar directamente a la sucursal.
@@ -33,7 +33,7 @@ ${KNOWLEDGE_BASE}
 
 Si te preguntan algo no cubierto en la base de conocimiento:
 1. Reconoce la pregunta amablemente
-2. Sugiere contactar por Instagram @suqieereposteria o por WhatsApp
+2. Sugiere contactar por Instagram @dulcereposteria o por WhatsApp
 3. Proporciona el teléfono si es relevante: 662 216 0759
 `;
 
@@ -69,5 +69,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Suqiée Chatbot server running on port ${PORT}`);
+  console.log(`Dulce Reposteria Chatbot server running on port ${PORT}`);
 });
