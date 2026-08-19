@@ -40,7 +40,6 @@ resetBtn.addEventListener("click", resetConversation);
 // ============================================================
 
 async function handleSend() {
-  // Prevent double-send
   if (isSending) return;
 
   const text = userInput.value.trim();
@@ -75,18 +74,16 @@ async function handleSend() {
     // Add assistant reply to history
     conversationHistory.push({ role: "assistant", content: reply });
 
-    // Remove typing indicator safely
+    // Remove typing indicator
     if (typingEl && typingEl.parentNode) {
       typingEl.remove();
     }
 
     appendMessage(reply, "bot");
   } catch (err) {
-    // Remove typing indicator safely
     if (typingEl && typingEl.parentNode) {
       typingEl.remove();
     }
-
     appendMessage(
       "Lo sentimos, algo salió mal. Por favor intenta de nuevo en unos momentos. 🙏",
       "bot",
@@ -96,7 +93,6 @@ async function handleSend() {
   } finally {
     isSending = false;
     setLoading(false);
-    userInput.focus();
   }
 }
 
@@ -119,7 +115,7 @@ function resetConversation() {
 
 function appendMessage(text, sender, isError = false) {
   const wrapper = document.createElement("div");
-  wrapper.className = `message ${sender === "user" ? "user-message" : "bot-message"}${isError ? " error-message" : ""}`;
+  wrapper.className = "message " + (sender === "user" ? "user-message" : "bot-message") + (isError ? " error-message" : "");
 
   const bubble = document.createElement("div");
   bubble.className = "message-bubble";
@@ -133,10 +129,7 @@ function appendMessage(text, sender, isError = false) {
   wrapper.appendChild(time);
   chatMessages.appendChild(wrapper);
 
-  // Ensure scroll happens after render
-  requestAnimationFrame(() => {
-    scrollToBottom();
-  });
+  setTimeout(scrollToBottom, 50);
 
   return wrapper;
 }
@@ -144,7 +137,6 @@ function appendMessage(text, sender, isError = false) {
 function appendTypingIndicator() {
   const wrapper = document.createElement("div");
   wrapper.className = "message bot-message typing-indicator";
-  wrapper.id = "typingIndicator";
 
   const bubble = document.createElement("div");
   bubble.className = "message-bubble";
@@ -153,9 +145,7 @@ function appendTypingIndicator() {
   wrapper.appendChild(bubble);
   chatMessages.appendChild(wrapper);
 
-  requestAnimationFrame(() => {
-    scrollToBottom();
-  });
+  setTimeout(scrollToBottom, 50);
 
   return wrapper;
 }
@@ -163,9 +153,6 @@ function appendTypingIndicator() {
 function setLoading(isLoading) {
   sendBtn.disabled = isLoading;
   userInput.disabled = isLoading;
-  if (!isLoading) {
-    userInput.focus();
-  }
 }
 
 function scrollToBottom() {
@@ -175,33 +162,3 @@ function scrollToBottom() {
 function formatTime(date) {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
-
-// ============================================================
-// Viewport fix for mobile keyboards (prevents zoom/scroll issues)
-// ============================================================
-
-function updateViewportHeight() {
-  const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-  document.documentElement.style.setProperty("--vh", vh + "px");
-  // Ensure scroll stays at bottom when keyboard opens
-  requestAnimationFrame(() => scrollToBottom());
-}
-
-updateViewportHeight();
-
-if (window.visualViewport) {
-  window.visualViewport.addEventListener("resize", updateViewportHeight);
-  window.visualViewport.addEventListener("scroll", () => {
-    // Prevent iOS from scrolling the page itself
-    window.scrollTo(0, 0);
-  });
-} else {
-  window.addEventListener("resize", updateViewportHeight);
-}
-
-// Prevent any page-level scrolling on iOS
-document.addEventListener("touchmove", (e) => {
-  if (!chatMessages.contains(e.target)) {
-    e.preventDefault();
-  }
-}, { passive: false });
