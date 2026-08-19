@@ -9,6 +9,7 @@ const resetBtn = document.getElementById("resetBtn");
 
 // Conversation history sent to the API (maintains session memory)
 let conversationHistory = [];
+let isSending = false;
 
 // Set welcome message timestamp
 document.getElementById("welcomeTime").textContent = formatTime(new Date());
@@ -29,7 +30,7 @@ userInput.addEventListener("keydown", (e) => {
 // Auto-resize textarea
 userInput.addEventListener("input", () => {
   userInput.style.height = "auto";
-  userInput.style.height = Math.min(userInput.scrollHeight, 120) + "px";
+  userInput.style.height = Math.min(userInput.scrollHeight, 100) + "px";
 });
 
 resetBtn.addEventListener("click", resetConversation);
@@ -39,8 +40,13 @@ resetBtn.addEventListener("click", resetConversation);
 // ============================================================
 
 async function handleSend() {
+  // Prevent double-send
+  if (isSending) return;
+
   const text = userInput.value.trim();
   if (!text) return;
+
+  isSending = true;
 
   // Add user message to UI and history
   appendMessage(text, "user");
@@ -61,7 +67,7 @@ async function handleSend() {
       body: JSON.stringify({ messages: conversationHistory }),
     });
 
-    if (!response.ok) throw new Error("API error");
+    if (!response.ok) throw new Error("API error: " + response.status);
 
     const data = await response.json();
     const reply = data.reply;
@@ -69,10 +75,18 @@ async function handleSend() {
     // Add assistant reply to history
     conversationHistory.push({ role: "assistant", content: reply });
 
-    typingEl.remove();
+    // Remove typing indicator safely
+    if (typingEl && typingEl.parentNode) {
+      typingEl.remove();
+    }
+
     appendMessage(reply, "bot");
   } catch (err) {
-    typingEl.remove();
+    // Remove typing indicator safely
+    if (typingEl && typingEl.parentNode) {
+      typingEl.remove();
+    }
+
     appendMessage(
       "Lo sentimos, algo salió mal. Por favor intenta de nuevo en unos momentos. 🙏",
       "bot",
@@ -80,7 +94,9 @@ async function handleSend() {
     );
     console.error(err);
   } finally {
+    isSending = false;
     setLoading(false);
+    userInput.focus();
   }
 }
 
@@ -116,7 +132,11 @@ function appendMessage(text, sender, isError = false) {
   wrapper.appendChild(bubble);
   wrapper.appendChild(time);
   chatMessages.appendChild(wrapper);
-  scrollToBottom();
+
+  // Ensure scroll happens after render
+  requestAnimationFrame(() => {
+    scrollToBottom();
+  });
 
   return wrapper;
 }
@@ -124,6 +144,7 @@ function appendMessage(text, sender, isError = false) {
 function appendTypingIndicator() {
   const wrapper = document.createElement("div");
   wrapper.className = "message bot-message typing-indicator";
+  wrapper.id = "typingIndicator";
 
   const bubble = document.createElement("div");
   bubble.className = "message-bubble";
@@ -131,7 +152,10 @@ function appendTypingIndicator() {
 
   wrapper.appendChild(bubble);
   chatMessages.appendChild(wrapper);
-  scrollToBottom();
+
+  requestAnimationFrame(() => {
+    scrollToBottom();
+  });
 
   return wrapper;
 }
@@ -139,6 +163,9 @@ function appendTypingIndicator() {
 function setLoading(isLoading) {
   sendBtn.disabled = isLoading;
   userInput.disabled = isLoading;
+  if (!isLoading) {
+    userInput.focus();
+  }
 }
 
 function scrollToBottom() {
